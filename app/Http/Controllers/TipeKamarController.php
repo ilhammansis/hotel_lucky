@@ -33,7 +33,7 @@ class TipeKamarController extends Controller
             'Connecting Room',
             'Presidential Suite'
         ];
-        return view('tipekamar.tipe_kamar_create');
+        return view('tipekamar.tipe_kamar_create', $data);
     }
 
     /**
@@ -116,7 +116,7 @@ class TipeKamarController extends Controller
      */
     public function destroy(string $id)
     {
-        $tipe_kamar = TipeKamar::all();
+        $tipe_kamar = TipeKamar::findOrFail($id);
         $tipe_kamar->delete();
         return back()->with('Pesan', 'Data Sudah Dihapus');
     }
