@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TipeKamar extends Model
 {
     use HasFactory;
+
+    public function kamar()
+    {
+        return $this->hasMany(Kamar::class);
+    }
 }

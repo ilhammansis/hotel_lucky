@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipeKamar;
 use Illuminate\Http\Request;
 
 class TipeKamarController extends Controller
@@ -11,7 +12,9 @@ class TipeKamarController extends Controller
      */
     public function index()
     {
-        //
+        $data['tipe_kamar'] = TipeKamar::all();
+        $data['judul'] = 'Data Tipe Kamar Hotel Lucky';
+        return view('tipekamar.tipe_kamar_index', $data);
     }
 
     /**
@@ -19,7 +22,18 @@ class TipeKamarController extends Controller
      */
     public function create()
     {
-        //
+        $data['list_tipe_kamar'] = [
+            'Single Room',
+            'Double Room',
+            'Twin Room',
+            'Triple Room',
+            'Suite Room',
+            'Deluxe Room',
+            'Family Room',
+            'Connecting Room',
+            'Presidential Suite'
+        ];
+        return view('tipekamar.tipe_kamar_create');
     }
 
     /**
@@ -27,7 +41,25 @@ class TipeKamarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tipekamar'=>'required',
+            'harga_dasar'=>'required',
+            'kapasitas'=>'required'
+        ],
+        [
+            'tipekamar.required'=>'*Tipe Kamar Belum Anda Pilih!',
+            'harga_dasar.required'=>'*Harga Tipe Kamar Belum Anda Inputkan!',
+            'kapasitas.required'=>'*Kapasitas Kamar Belum Anda Inputkan!'
+        ]
+    );
+        $tipe_kamar = new TipeKamar();
+        $tipe_kamar->tipekamar = $request->tipekamar;
+        $tipe_kamar->deskripsi = $request->deskripsi;
+        $tipe_kamar->harga_dasar = $request->harga_dasar;
+        $tipe_kamar->kapasitas = $request->kapasitas;
+        $tipe_kamar->save();
+
+        return redirect('/tipekamar')->with('Pesan', 'Data Sudah Disimpan');
     }
 
     /**
@@ -43,7 +75,19 @@ class TipeKamarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['tipe_kamar']=TipeKamar::findOrFail($id);
+        $data['list_tipe_kamar']=[
+            'Single Room',
+            'Double Room',
+            'Twin Room',
+            'Triple Room',
+            'Suite Room',
+            'Deluxe Room',
+            'Family Room',
+            'Connecting Room',
+            'Presidential Suite'
+        ];
+        return view('tipekamar.tipe_kamar_edit', $data);
     }
 
     /**
@@ -51,7 +95,20 @@ class TipeKamarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'tipekamar'=>'required',
+            'harga_dasar'=>'required',
+            'kapasitas'=>'required'
+        ]);
+
+        $tipe_kamar = TipeKamar::findOrFail($id);
+        $tipe_kamar->tipekamar = $request->tipekamar;
+        $tipe_kamar->deskripsi = $request->deskripsi;
+        $tipe_kamar->harga_dasar = $request->harga_dasar;
+        $tipe_kamar->kapasitas = $request->kapasitas;
+        $tipe_kamar->save();
+
+        return redirect('/tipekamar')->with('Pesan', 'Data Sudah Diperbarui');
     }
 
     /**
@@ -59,6 +116,8 @@ class TipeKamarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tipe_kamar = TipeKamar::all();
+        $tipe_kamar->delete();
+        return back()->with('Pesan', 'Data Sudah Dihapus');
     }
 }

@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
                                 <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
-                                    <option value="">Pilih Role</option>
+                                    <option value="">-Pilih Role-</option>
                                     <option value="tamu" {{ old('role') == 'tamu' ? 'selected' : '' }}>Tamu</option>
                                     <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
                                 </select>

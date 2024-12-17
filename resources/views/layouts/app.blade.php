@@ -30,7 +30,51 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Kamar</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('kamar', []) }}">Data Kamar</a></li>
+                                <li><a class="dropdown-item" href="{{ url('kamar/create', []) }}">Tambah kamar</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url('tipekamar',[]) }}">Data Tipe Kamar</a></li>
+                                <li><a class="dropdown-item" href="{{ url('tipekamar/create', []) }}">Tambah Tipe Kamar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Riview</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('riview', []) }}">Data Riview</a></li>
+                                <li><a class="dropdown-item" href="{{ url('riview/create', []) }}">Tambah Riviewr</a></li>
+                            </ul>
+                        </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Booking</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('booking', []) }}">Data Booking</a></li>
+                                <li><a class="dropdown-item" href="{{ url('booking/create', []) }}">Tambah Data Booking</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pembayaran</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('pembayaran', []) }}">Data Pembayaran</a></li>
+                                <li><a class="dropdown-item" href="{{ url('pembayaran/create', []) }}">Tambah Data Pembayaran</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Laporan
+                            </button>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('dokter/laporan/cetak', []) }}">Laporan Dokter</a></li>
+                            <li><a class="dropdown-item" href="{{ url('pasien/laporan/cetak', []) }}">Laporan Pasien</a></li>
+                            </ul>
+                        </div> --}}
+                    @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,6 +117,11 @@
         </nav>
 
         <main class="py-4">
+            @if (Session::has('Pesan'))
+                <div class="alert alert-primary" role="alert">
+                    {{ Session::get('Pesan') }}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

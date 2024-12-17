@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tipe_kamars', function (Blueprint $table) {
             $table->id();
-            $table->string('tipe_kamar',45);
+            $table->string('tipekamar');
             $table->text('deskripsi')->nullable();
             $table->decimal('harga_dasar',10,2);
             $table->integer('kapasitas');
