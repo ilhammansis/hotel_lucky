@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('booking_id')->constrained('bookings')
+                ->onDelete('cascade')->onUpdate('cascade');
+            $table->string('kode_pembayaran',15)->unique();
+            $table->decimal('jumlah_pembayaran',10,2);
+            $table->date('tanggal_pembayaran');
+            $table->enum('metode_pembayaran',['Cash','Transfer','QRIS']);
+            $table->enum('status_pembayaran',['Selesai','Pending']);
             $table->timestamps();
         });
     }
