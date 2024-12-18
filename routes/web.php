@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\RiviewController;
 use App\Http\Controllers\TipeKamarController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function(){
 Route::resource('kamar',KamarController::class);
 Route::resource('tipekamar', TipeKamarController::class);
+Route::resource('riview', RiviewController::class);
 });
