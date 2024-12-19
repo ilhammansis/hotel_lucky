@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Kamar;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -11,7 +14,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $data['booking']=Booking::all();
+        $data['judul']='Booking';
+        return view ('booking.booking_index',$data);
     }
 
     /**
@@ -19,7 +24,18 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $data['list_user'] = User::selectRaw("id,concat(role,'-',name) as tampil")
+            ->pluck('tampil','id');
+        $data['list_kamar'] = Kamar::selectRaw("id,concat(nomor_kamar,'-',nama_kamar) as tampil")
+            ->pluck('tampil','id');
+        $data['list_status']=[
+            'Konfirmasi','Pending','Selesai','Cancel'
+        ];
+        $data['list_pembayaran']=[
+            'Cash','Transfer','QRIS'
+        ];
+        return view('booking.booking_create',$data);
+
     }
 
     /**
@@ -27,7 +43,30 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id'=>'required|exists:users,id',
+            'kamar_id'=>'required|exists:kamars,id',
+            'kode_booking'=>'required|unique:bookings,kode_booking',
+            'tanggal_check_in'=>'required',
+            'tanggal_check_out'=>'required',
+            'jumlah_tamu'=>'required',
+            'total_harga'=>'required',
+            'status'=>'required',
+            'metode_pembayaran'=>'required',
+        ]);
+        $booking = new Booking();
+        $booking->user_id = $request->user_id;
+        $booking->kamar_id = $request->kamar_id;
+        $booking->kode_booking = $request->kode_booking;
+        $booking->tanggal_check_in = $request->tanggal_check_in;
+        $booking->tanggal_check_out = $request->tanggal_check_out;
+        $booking->jumlah_tamu = $request->jumlah_tamu;
+        $booking->total_harga = $request->total_harga;
+        $booking->status = $request->status;
+        $booking->metode_pembayaran = $request->metode_pembayaran;
+        $booking->save();
+
+        return redirect('/booking')->with('Pesan','Data Sudah Disimpan');
     }
 
     /**
@@ -43,7 +82,18 @@ class BookingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['booking']=Booking::findOrFail($id);
+        $data['list_user'] = User::selectRaw("id,concat(role,'-',name) as tampil")
+            ->pluck('tampil','id');
+        $data['list_kamar'] = Kamar::selectRaw("id,concat(nomor_kamar,'-',nama_kamar) as tampil")
+            ->pluck('tampil','id');
+        $data['list_status']=[
+            'Konfirmasi','Pending','Selesai','Cancel'
+        ];
+        $data['list_pembayaran']=[
+            'Cash','Transfer','QRIS'
+        ];
+        return view('booking.booking_edit',$data);
     }
 
     /**
@@ -51,7 +101,30 @@ class BookingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'user_id'=>'required|exists:users,id',
+            'kamar_id'=>'required|exists:kamars,id',
+            'kode_booking'=>'required|unique:bookings,kode_booking,' .$id,
+            'tanggal_check_in'=>'required',
+            'tanggal_check_out'=>'required',
+            'jumlah_tamu'=>'required',
+            'total_harga'=>'required',
+            'status'=>'required',
+            'metode_pembayaran'=>'required',
+        ]);
+        $booking = Booking::findOrFail($id);
+        $booking->user_id = $request->user_id;
+        $booking->kamar_id = $request->kamar_id;
+        $booking->kode_booking = $request->kode_booking;
+        $booking->tanggal_check_in = $request->tanggal_check_in;
+        $booking->tanggal_check_out = $request->tanggal_check_out;
+        $booking->jumlah_tamu = $request->jumlah_tamu;
+        $booking->total_harga = $request->total_harga;
+        $booking->status = $request->status;
+        $booking->metode_pembayaran = $request->metode_pembayaran;
+        $booking->save();
+
+        return redirect('/booking')->with('Pesan','Data Sudah Diperbarui');
     }
 
     /**
@@ -59,6 +132,8 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking=Booking::findOrFail($id);
+        $booking->delete();
+        return back()->with('Pesan','Data Sudah Dihapus');
     }
 }

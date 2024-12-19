@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($riview as $a )
+                                @foreach ($riview as $a)
                                     <tr>
                                         <td class="text-center text-uppercase">{{ $a->user->name }}</td>
                                         <td>{{ $a->kamar->nama_kamar }}</td>

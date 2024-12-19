@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RiviewController;
 use App\Http\Controllers\TipeKamarController;
 use GuzzleHttp\Middleware;
@@ -28,4 +30,6 @@ Route::middleware('auth')->group(function(){
 Route::resource('kamar',KamarController::class);
 Route::resource('tipekamar', TipeKamarController::class);
 Route::resource('riview', RiviewController::class);
+Route::resource('booking', BookingController::class);
+Route::resource('pembayaran', PembayaranController::class);
 });
