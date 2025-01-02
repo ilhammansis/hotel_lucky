@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admins')
 <style>
     .biaya-display{
         display: inline-block;
@@ -6,8 +6,8 @@
         min-width: 100px;
     }
 </style>
-@section('content')
-    <div class="container">
+@section('content-admin')
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -37,7 +37,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ url('tipekamar/'.$a->id.'/edit', []) }}" class="btn btn-warning">Edit</a>
+                                            <a href="{{ url('tipekamar/'.$a->id.'/edit', []) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ url('tipekamar/'.$a->id, []) }}" method="post" class="d-inline"
                                                 onsubmit="return confirm('Anda Yakin Data ini Mau Dihapus?')">
                                                 @method('delete')
