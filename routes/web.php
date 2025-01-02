@@ -5,6 +5,7 @@ use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RiviewController;
 use App\Http\Controllers\TipeKamarController;
+use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,5 @@ Route::resource('tipekamar', TipeKamarController::class);
 Route::resource('riview', RiviewController::class);
 Route::resource('booking', BookingController::class);
 Route::resource('pembayaran', PembayaranController::class);
+Route::resource('user', UserController::class);
 });

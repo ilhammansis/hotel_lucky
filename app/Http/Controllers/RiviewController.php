@@ -15,7 +15,7 @@ class RiviewController extends Controller
     public function index()
     {
         $data['riview']=Riview::all();
-        $data['judul']='Data Riview';
+        $data['judul']='Data Ulasan Tamu';
         return view('riview.riview_index',$data);
     }
 

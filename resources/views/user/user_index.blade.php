@@ -9,29 +9,25 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center">
-                                    <th>Kode Pembayaran</th>
-                                    <th>Kode Booking</th>
-                                    <th>Jumlah Pembayaran</th>
-                                    <th>Tanggal Pembayaran</th>
-                                    <th>Metode Pembayaran</th>
-                                    <th>Status Pembayaran</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Telepon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pembayaran as $a )
+                                @foreach ($user as $a )
                                     <tr>
-                                        <td>{{ $a->kode_pembayaran }}</td>
-                                        <td>{{ $a->booking->kode_booking }}</td>
-                                        <td>{{ 'Rp. ' . number_format($a->jumlah_pembayaran, 0, ',', '.') }}</td>
-                                        <td>Rp. <span class="biaya-display">{{ number_format($a->jumlah_pembayaran, 0,',','.') }}</span></td>
-                                        <td>{{ date('d F Y', strtotime($a->tanggal_pembayaran)) }}</td>
-                                        <td>{{ $a->metode_pembayaran }}</td>
-                                        <td>{{ $a->status_pembayaran }}</td>
-
+                                        <td class="text-center">{{ $a->name }}</td>
+                                        <td class="text-center">{{ $a->username }}</td>
+                                        <td class="text-center">{{ $a->email }}</td>
+                                        <td class="text-center">{{ $a->role }}</td>
+                                        <td class="text-center">{{ $a->no_telepon }}</td>
                                         <td class="text-center">
-                                            <a href="{{ url('pembayaran/'.$a->id.'/edit', []) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ url('pembayaran/'.$a->id, []) }}" method="post" class="d-inline"
+                                            <a href="{{ url('user/'.$a->id.'/edit', []) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ url('user/'.$a->id, []) }}" method="post" class="d-inline"
                                                 onsubmit="return confirm('Anda Yakin Data ini Mau Dihapus?')">
                                                 @method('delete')
                                                 @csrf

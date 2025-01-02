@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('spica') }}/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
+    {{-- cdn tambahan --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('spica') }}/css/style.css">
@@ -40,33 +42,32 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#kamar-menu" aria-expanded="false" aria-controls="kamar-menu">
+                <a class="nav-link" data-toggle="collapse" href="#kamar" aria-expanded="false" aria-controls="kamar">
                     <i class="mdi mdi-bank menu-icon"></i>
                     <span class="menu-title">Kamar</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="kamar-menu">
+                <div class="collapse" id="kamar">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('kamar',[]) }}">Data Kamar</a></li>
-                        <li class="nav-item"> <a style="color:white" class="nav-link" href="{{ url('kamar/create',[]) }}">Tambah Kamar</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('kamar',[]) }}"> Data Kamar </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('kamar/create',[]) }}"> Tambah Data Kamar </a></li>
                     </ul>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#tipekamar-menu" aria-expanded="false" aria-controls="tipekamar-menu">
+                <a class="nav-link" data-toggle="collapse" href="#tipe-kamar" aria-expanded="false" aria-controls="tipe-kamar">
                     <i class="mdi mdi-city menu-icon"></i>
                     <span class="menu-title">Tipe Kamar</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="tipekamar-menu">
+                <div class="collapse" id="tipe-kamar">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('tipekamar',[]) }}">Data Tipe Kamar</a></li>
-                        <li class="nav-item"> <a style="color:white" class="nav-link" href="{{ url('tipekamar/create',[]) }}">Tambah Tipe Kamar</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('tipekamar',[]) }}"> Data Tipe Kamar </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('tipekamar/create',[]) }}"> Tambah Tipe Kamar </a></li>
                     </ul>
                 </div>
             </li>
-
 
             <li class="nav-item sidebar-category">
                 <p style="font-size:1rem">Data Transaksi</p>
@@ -127,59 +128,19 @@
             </li>
 
             <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="mdi mdi-chart-pie menu-icon"></i>
-                <span class="menu-title">Charts</span>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ url('tipekamar',[]) }}">Data Tipe Kamar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ url('tipekamar/create',[]) }}">Tambah Tipe Kamar</a></li>
-                </ul>
-            </div>
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">Pengguna</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('user',[]) }}"> Data User </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('user/create',[]) }}"> Tambah Data Pengguna </a></li>
+                    </ul>
+                </div>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-                <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Tables</span>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-                <i class="mdi mdi-emoticon menu-icon"></i>
-                <span class="menu-title">Icons</span>
-            </a>
-            </li>
-            <li class="nav-item sidebar-category">
-            <p>Pages</p>
-            <span></span>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="mdi mdi-account menu-icon"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-                </ul>
-            </div>
-            </li>
-            <li class="nav-item sidebar-category">
-            <p>Apps</p>
-            <span></span>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="docs/documentation.html">
-                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
-            </a>
-            </li>
+
         </ul>
         </nav>
         <!-- partial -->
@@ -191,8 +152,8 @@
                 <span class="mdi mdi-menu"></span>
             </button>
             <div class="navbar-brand-wrapper">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo"/></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+                <a class="navbar-brand brand-logo" href="{{ url('home',[]) }}"><img style="width: 30px;border-radius:10px" src="{{ asset('img/man.png') }}" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="{{ url('home',[]) }}"><img src="{{ asset('img/man.png') }}" alt="icon profile"></a>
             </div>
             <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Selamat Datang, {{ Auth::user()->name }}</h4>
             <ul class="navbar-nav navbar-nav-right">
@@ -310,7 +271,7 @@
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="images/faces/face5.jpg" alt="profile"/>
+                    <img style="width: 30px;border-radius:60px" src="{{ asset('img/man.png') }}" alt="profile"/>
                     <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -349,15 +310,20 @@
 
         <!-- partial -->
         <div class="main-panel">
-            <div class="content-wrapper">
-
+            <div class="content-wrapper" style="color: #404040">
                 @if (Session::has('Pesan'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ Session::get('Pesan') }}
-                    </div>
+                    <script>
+                        Swal.fire({
+                            title: 'Pesan',
+                            text: '{{ Session::get('Pesan') }}',
+                            icon: 'success',
+                            confirmButtonText: 'Oke'
+                        })
+                    </script>
                 @endif
                 @yield('content-admin')
             </div>
+
             <!-- content-wrapper ends -->
             <!-- partial:./partials/_footer.html -->
             <footer class="footer">

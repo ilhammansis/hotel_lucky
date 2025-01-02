@@ -1,9 +1,9 @@
 @extends('layouts.admins')
 <style>
     .biaya-display{
-        display: inline-block;
-        text-align: right;
-        min-width: 100px;
+        display: inline;
+        text-align: left;
+        min-width: unset;
     }
 </style>
 @section('content-admin')
