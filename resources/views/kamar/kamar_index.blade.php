@@ -5,26 +5,75 @@
         text-align: right;
         min-width: 100px;
     }
+    .komentar-td {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            form.onsubmit = function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: 'Data ini akan dihapus!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            };
+        });
+
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: 'Anda akan mengedit data ini!',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Edit!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = button.href;
+                    }
+                });
+            });
+        });
+    });
+</script>
 @section('content-admin')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header text-center fw-bold fs-5">{{ $judul }}</div>
+                    <div class="card-header text-center fw-bold fs-5 font-weight-bold" style="background-color:#BFB6AE">{{ $judul }}</div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center">
-                                    <th>Kode Kamar</th>
-                                    <th>Nama Kamar</th>
-                                    <th>Tipe Kamar</th>
-                                    <th>Harga Permalam</th>
-                                    <th>Status</th>
-                                    <th>Deskripsi</th>
-                                    <th>Fasilitas</th>
-                                    <th>Foto Kamar</th>
-                                    <th>Aksi</th>
+                                    <th class="font-weight-bold">Kode Kamar</th>
+                                    <th class="font-weight-bold">Nama</th>
+                                    <th class="font-weight-bold">Tipe</th>
+                                    <th class="font-weight-bold">Harga Permalam</th>
+                                    <th class="font-weight-bold">Status</th>
+                                    <th class="font-weight-bold">Deskripsi</th>
+                                    <th class="font-weight-bold">Fasilitas</th>
+                                    <th class="font-weight-bold">Foto</th>
+                                    <th class="font-weight-bold">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,18 +82,18 @@
                                         <td class="text-center text-uppercase">{{ $a->nomor_kamar }}</td>
                                         <td>{{ $a->nama_kamar }}</td>
                                         <td>{{ $a->tipe_kamar->tipekamar }}</td>
-                                        <td>Rp. <span class="biaya-display">{{ number_format($a->harga_permalam, 0,',','.') }}</span></td>
+                                        <td>Rp.<span class="biaya-display">{{ number_format($a->harga_permalam, 0,',','.') }}</span></td>
                                         <td class="text-center">{{ $a->status }}</td>
-                                        <td class="text-center">
+                                        <td class="komentar-td">
                                             @if ($a->deskripsi)
-                                                {{ basename($a->deskripsi) }}
+                                                {{ $a->deskripsi }}
                                             @else
                                                 -
                                             @endif
                                         </td>
                                         <td class="text-center">
                                             @if ($a->fasilitas)
-                                                {{ basename($a->fasilitas) }}
+                                                {{ $a->fasilitas }}
                                             @else
                                                 -
                                             @endif
@@ -58,9 +107,8 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="{{ url('kamar/'.$a->id.'/edit', []) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ url('kamar/'.$a->id, []) }}" method="post" class="d-inline"
-                                                onsubmit="return confirm('Anda Yakin Data ini Mau Dihapus?')">
+                                            <a href="{{ url('kamar/'.$a->id.'/edit', []) }}" class="btn btn-warning btn-sm edit-btn">Edit</a>
+                                            <form action="{{ url('kamar/'.$a->id, []) }}" method="post" class="d-inline delete-form">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
