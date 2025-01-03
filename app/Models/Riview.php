@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Riview extends Model
 {
-    protected $dates = ['tanggal_riview'];
-
-    public $timestamps = false;
     use HasFactory;
+    public $timestamps = false;
+    protected $dates = ['tanggal_riview'];
+    protected $fillable =[
+        'user_id',
+        'kamar_id',
+        'rating',
+        'komentar',
+        'tanggal_riview'
+    ];
 
     public function user()
     {
