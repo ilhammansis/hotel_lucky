@@ -1,11 +1,4 @@
 @extends('layouts.admins')
-<style>
-    .biaya-display{
-        display: inline-block;
-        text-align: right;
-        min-width: 100px;
-    }
-</style>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -70,7 +63,7 @@
                                 @foreach ($tipe_kamar as $a )
                                     <tr>
                                         <td class="text-center text-uppercase">{{ $a->tipekamar }}</td>
-                                        <td>Rp. <span class="biaya-display">{{ number_format($a->harga_dasar, 0,',','.') }}</span></td>
+                                        <td>{{ 'Rp. ' . number_format($a->harga_dasar, 0, ',', '.') }}</td>
                                         <td class="text-center">{{ $a->kapasitas }}<span> Orang</span></td>
                                         <td class="text-center">
                                             @if ($a->deskripsi)

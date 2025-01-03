@@ -25,8 +25,7 @@ class UserController extends Controller
     {
         $data['list_pengguna']=[
             'Admin',
-            'Staff',
-            'Tamu'
+            'Staff'
         ];
         return view('user.user_create', $data);
     }

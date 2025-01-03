@@ -1,10 +1,5 @@
 @extends('layouts.admins')
 <style>
-    .biaya-display{
-        display: inline-block;
-        text-align: right;
-        min-width: 100px;
-    }
     .komentar-td {
         max-width: 200px;
         white-space: nowrap;
@@ -64,7 +59,7 @@
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
-                                <tr class=" text-center">
+                                <tr class=" text-center" style="color: white; background-color: #404040">
                                     <th class="font-weight-bold">Kode Kamar</th>
                                     <th class="font-weight-bold">Nama</th>
                                     <th class="font-weight-bold">Tipe</th>
@@ -82,7 +77,7 @@
                                         <td class="text-center text-uppercase">{{ $a->nomor_kamar }}</td>
                                         <td>{{ $a->nama_kamar }}</td>
                                         <td>{{ $a->tipe_kamar->tipekamar }}</td>
-                                        <td>Rp.<span class="biaya-display">{{ number_format($a->harga_permalam, 0,',','.') }}</span></td>
+                                        <td>{{ 'Rp. ' . number_format($a->harga_permalam, 0, ',', '.') }}</td>
                                         <td class="text-center">{{ $a->status }}</td>
                                         <td class="komentar-td">
                                             @if ($a->deskripsi)

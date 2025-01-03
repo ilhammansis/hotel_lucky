@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center font-weight-bold" style="background-color:#D9D9D9 ">
                     Edit Data Pembayaran
                 </div>
                 <div class="card-body">
@@ -14,14 +14,14 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="kode_pembayaran">Kode Pembayaran</label>
+                            <label for="kode_pembayaran" class="font-weight-bold">Kode Pembayaran</label>
                             <input id="kode_pembayaran" class="form-control" type="text" name="kode_pembayaran"
                                 value="{{ $pembayaran->kode_pembayaran ?? old('kode_pembayaran') }}">
                             <span class="text-danger">{{ $errors->first('kode_pembayaran') }}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="my-select">Kode Booking</label>
+                            <label for="my-select" class="font-weight-bold">Kode Booking</label>
                             <select id="my-select" class="form-control" name="booking_id">
                                 <option value="">Kode Booking</option>
                                 @foreach ($list_booking as $id => $a)
@@ -33,21 +33,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="jumlah_pembayaran">Jumlah Pembayaran</label>
+                            <label for="jumlah_pembayaran" class="font-weight-bold">Jumlah Pembayaran</label>
                             <input id="jumlah_pembayaran" class="form-control" type="number" name="jumlah_pembayaran"
                                 value="{{ $pembayaran->jumlah_pembayaran ?? old('jumlah_pembayaran') }}">
                             <span class="text-danger">{{ $errors->first('jumlah_pembayaran') }}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="tanggal_pembayaran">Tanggal pembayaran</label>
+                            <label for="tanggal_pembayaran" class="font-weight-bold">Tanggal pembayaran</label>
                             <input id="tanggal_pembayaran" class="form-control" type="date" name="tanggal_pembayaran"
                                 value="{{ $pembayaran->tanggal_pembayaran  ?? old('tanggal_pembayaran') }}">
                             <span class="text-danger">{{ $errors->first('tanggal_pembayaran') }}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="status_pembayaran">Status Pembayaran</label>
+                            <label for="status_pembayaran" class="font-weight-bold">Status Pembayaran</label>
                             <select id="status_pembayaran" class="form-control" name="status_pembayaran">
                                 <option value="">Pilih status</option>
                                 @foreach ($list_status as $a)
@@ -59,11 +59,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="metode_pembayaran">Metode Pembayaran</label>
+                            <label for="metode_pembayaran" class="font-weight-bold">Metode Pembayaran</label>
                             <select id="metode_pembayaran" class="form-control" name="metode_pembayaran">
                                 <option value="">Pilih Metode</option>
                                 @foreach ($list_pembayaran as $a)
-                                <option value="{{ $a }}" @selected($a==$pembayaran->status_pembayaran)>{{ $a }}
+                                <option value="{{ $a }}" @selected($a==$pembayaran->metode_pembayaran)>{{ $a }}
                                 </option>
                                 @endforeach
                             </select>
@@ -71,8 +71,8 @@
                         </div>
 
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                <div class="card-footer" style="background-color:#D9D9D9 ">
+                    <button type="submit" class="btn" style="background-color: #333333; color:white">Simpan</button>
                 </div>
                 </form>
             </div>

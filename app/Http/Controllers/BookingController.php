@@ -52,7 +52,7 @@ class BookingController extends Controller
             'jumlah_tamu'=>'required',
             'total_harga'=>'required',
             'status'=>'required',
-            'metode_pembayaran'=>'required',
+            'metode_pembayaran'=>'required'
         ]);
         $booking = new Booking();
         $booking->user_id = $request->user_id;
@@ -110,7 +110,7 @@ class BookingController extends Controller
             'jumlah_tamu'=>'required',
             'total_harga'=>'required',
             'status'=>'required',
-            'metode_pembayaran'=>'required',
+            'metode_pembayaran'=>'required'
         ]);
         $booking = Booking::findOrFail($id);
         $booking->user_id = $request->user_id;
