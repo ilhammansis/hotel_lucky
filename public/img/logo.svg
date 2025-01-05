@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- Background -->
+  <rect width="300" height="200" fill="white"/>
+  
+  <!-- Hotel Building Icon -->
+  <path d="M60 160V80L150 40L240 80V160H60Z" fill="black"/>
+  
+  <!-- Windows -->
+  <rect x="90" y="100" width="30" height="30" fill="white"/>
+  <rect x="180" y="100" width="30" height="30" fill="white"/>
+  
+  <!-- Door -->
+  <path d="M130 160V120H170V160Z" fill="white"/>
+  
+  <!-- Text "LUCKY" -->
+  <text x="150" y="190" 
+        font-family="Arial, sans-serif" 
+        font-size="24" 
+        text-anchor="middle" 
+        font-weight="bold"
+        fill="black">LUCKY HOTEL</text>
+  
+  <!-- Stars -->
+  <path d="M120 70L123 76L130 77L125 82L126 89L120 86L114 89L115 82L110 77L117 76Z" fill="white"/>
+  <path d="M180 70L183 76L190 77L185 82L186 89L180 86L174 89L175 82L170 77L177 76Z" fill="white"/>
+</svg>

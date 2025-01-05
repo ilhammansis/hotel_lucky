@@ -12,7 +12,7 @@ class TipeKamarController extends Controller
      */
     public function index()
     {
-        $data['tipe_kamar'] = TipeKamar::all();
+        $data['tipe_kamar'] = TipeKamar::orderBy('id', 'asc')->paginate(10);
         $data['judul'] = 'Data Tipe Kamar Hotel Lucky';
         return view('tipekamar.tipe_kamar_index', $data);
     }

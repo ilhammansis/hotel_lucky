@@ -14,7 +14,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $data['booking']=Booking::all();
+        $data['booking']=Booking::orderBy('kode_booking','asc')->paginate(5);
         $data['judul']='Booking';
         return view ('booking.booking_index',$data);
     }

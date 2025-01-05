@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['user']=User::all();
+        $data['user']=User::orderBy('name','asc')->paginate(5);
         $data['judul']='Data Pengguna';
         return view('user.user_index', $data);
     }
@@ -23,11 +23,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['list_pengguna']=[
-            'Admin',
-            'Staff'
-        ];
-        return view('user.user_create', $data);
+        // $data['list_pengguna']=[
+        //     'Admin',
+        //     'Staff'
+        // ];
+        // return view('user.user_create', $data);
     }
 
     /**
@@ -35,25 +35,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'username'=>'required|unique:users,username',
-            'email'=>'required|unique:users,email',
-            'role'=>'required',
-            'no_telepon'=>'required',
-            'password'=>'password'
-        ]);
+        // $request->validate([
+        //     'name'=>'required',
+        //     'username'=>'required|unique:users,username',
+        //     'email'=>'required|unique:users,email',
+        //     'role'=>'required',
+        //     'no_telepon'=>'required',
+        //     'password'=>'password'
+        // ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->no_telepon = $request->no_telepon;
-        $user->password = $request->password;
-        $user->save();
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->username = $request->username;
+        // $user->email = $request->email;
+        // $user->role = $request->role;
+        // $user->no_telepon = $request->no_telepon;
+        // $user->password = $request->password;
+        // $user->save();
 
-        return redirect('/user')->with('Pesan', 'Data Sudah Disimpan');
+        // return redirect('/user')->with('Pesan', 'Data Sudah Disimpan');
     }
 
     /**
@@ -69,13 +69,13 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $data['user'] = User::findOrFail($id);
-        $data['list_pengguna']=[
-            'Admin',
-            'Staff',
-            'Tamu'
-        ];
-        return view('user.user_edit', $data);
+        // $data['user'] = User::findOrFail($id);
+        // $data['list_pengguna']=[
+        //     'Admin',
+        //     'Staff',
+        //     'Tamu'
+        // ];
+        // return view('user.user_edit', $data);
     }
 
     /**
@@ -83,25 +83,25 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name'=>'required',
-            'username'=>'required|unique:users,username'.$id,
-            'email'=>'required|unique:users,email'.$id,
-            'role'=>'required',
-            'no_telepon'=>'required',
-            'password'=>'password'
-        ]);
+        // $request->validate([
+        //     'name'=>'required',
+        //     'username'=>'required|unique:users,username'.$id,
+        //     'email'=>'required|unique:users,email'.$id,
+        //     'role'=>'required',
+        //     'no_telepon'=>'required',
+        //     'password'=>'password'
+        // ]);
 
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->no_telepon = $request->no_telepon;
-        $user->password = $request->password;
-        $user->save();
+        // $user = User::findOrFail($id);
+        // $user->name = $request->name;
+        // $user->username = $request->username;
+        // $user->email = $request->email;
+        // $user->role = $request->role;
+        // $user->no_telepon = $request->no_telepon;
+        // $user->password = $request->password;
+        // $user->save();
 
-        return redirect('/user')->with('Pesan','Data Sudah Diperbarui');
+        // return redirect('/user')->with('Pesan','Data Sudah Diperbarui');
     }
 
     /**

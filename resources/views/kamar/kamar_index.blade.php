@@ -60,6 +60,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
+                                    <th class="font-weight-bold">No</th>
                                     <th class="font-weight-bold">Kode Kamar</th>
                                     <th class="font-weight-bold">Nama</th>
                                     <th class="font-weight-bold">Tipe</th>
@@ -72,8 +73,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no = ($kamar->currentPage() - 1) * $kamar->perPage() + 0;
+                                @endphp
                                 @foreach ($kamar as $a )
                                     <tr>
+                                        <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td class="text-center text-uppercase">{{ $a->nomor_kamar }}</td>
                                         <td>{{ $a->nama_kamar }}</td>
                                         <td>{{ $a->tipe_kamar->tipekamar }}</td>
@@ -115,6 +120,33 @@
                         </table>
                     </div>
                     <div class="card-footer">
+                        <nav>
+                            <ul class="pagination">
+                                @if ($kamar->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Sebelumnya</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $kamar->previousPageUrl() }}">Sebelumnya</a>
+                                    </li>
+                                @endif
+                                @for ($i = 1; $i <= $kamar->lastPage(); $i++)
+                                    <li class="page-item {{ ($kamar->currentPage() == $i) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $kamar->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                @if ($kamar->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $kamar->nextPageUrl() }}">Selanjutnya</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Selanjutnya</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

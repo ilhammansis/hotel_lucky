@@ -17,7 +17,8 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('spica') }}/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('spica') }}/images/favicon.png" />
+    {{-- <link rel="shortcut icon" href="{{ asset('spica') }}/images/favicon.png" /> --}}
+    <link rel="shortcut icon" href="{{ asset('img/favicon.jpg') }}" />
     </head>
     <body>
     <div class="container-scroller d-flex">
@@ -136,7 +137,6 @@
                 <div class="collapse" id="auth">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('user',[]) }}"> Data User </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('user/create',[]) }}"> Tambah Data Pengguna </a></li>
                     </ul>
                 </div>
             </li>

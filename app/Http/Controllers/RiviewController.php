@@ -14,7 +14,7 @@ class RiviewController extends Controller
      */
     public function index()
     {
-        $data['riview']=Riview::all();
+        $data['riview']=Riview::orderBy('tanggal_riview','asc')->paginate(5);
         $data['judul']='Data Ulasan Tamu';
         return view('riview.riview_index',$data);
     }

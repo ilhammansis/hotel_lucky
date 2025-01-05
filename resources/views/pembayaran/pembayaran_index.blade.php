@@ -52,6 +52,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
+                                    <th class="font-weight-bold" style="max-width: 1rem">No</th>
                                     <th class="font-weight-bold">Kode Pembayaran</th>
                                     <th class="font-weight-bold">Kode Booking</th>
                                     <th class="font-weight-bold">Total</th>
@@ -62,8 +63,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no = ($pembayaran->currentPage() - 1) * $pembayaran->perPage() + 0;
+                                @endphp
                                 @foreach ($pembayaran as $a )
                                     <tr>
+                                        <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td class="text-center text-uppercase">{{ $a->kode_pembayaran }}</td>
                                         <td class="text-center text-uppercase">{{ $a->booking->kode_booking }}</td>
                                         <td>{{ 'Rp. ' . number_format($a->jumlah_pembayaran, 0, ',', '.') }}</td>
@@ -85,6 +90,33 @@
                         </table>
                     </div>
                     <div class="card-footer">
+                        <nav>
+                            <ul class="pagination">
+                                @if ($pembayaran->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Sebelumnya</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $pembayaran->previousPageUrl() }}">Sebelumnya</a>
+                                    </li>
+                                @endif
+                                @for ($i = 1; $i <= $pembayaran->lastPage(); $i++)
+                                    <li class="page-item {{ ($pembayaran->currentPage() == $i) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $pembayaran->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                @if ($pembayaran->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $pembayaran->nextPageUrl() }}">Selanjutnya</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Selanjutnya</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

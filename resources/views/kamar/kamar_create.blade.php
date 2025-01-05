@@ -15,7 +15,7 @@
 
                         <div class="form-group">
                             <label for="nomor_kamar" class="font-weight-bold">Kode kamar</label>
-                            <input id="nomor_kamar" class="form-control" type="text" name="nomor_kamar"
+                            <input id="nomor_kamar" class="form-control" type="text" name="nomor_kamar" placeholder="Awali dengan kode *KMR"
                                 value="{{ old('nomor_kamar') }}">
                             <span class="text-danger">{{ $errors->first('nomor_kamar') }}</span>
                         </div>

@@ -13,7 +13,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $data['pembayaran']=Pembayaran::all();
+        $data['pembayaran']=Pembayaran::orderBy('kode_pembayaran','asc')->paginate(5);
         $data['judul']='Data Pembayaran';
         return view('pembayaran.pembayaran_index',$data);
     }

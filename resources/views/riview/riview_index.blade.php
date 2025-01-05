@@ -66,6 +66,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
+                                    <th class="font-weight-bold">No</th>
                                     <th class="font-weight-bold">Pengguna</th>
                                     <th class="font-weight-bold">Nama Kamar</th>
                                     <th class="font-weight-bold">Rating</th>
@@ -75,8 +76,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no = ($riview->currentPage() - 1) * $riview->perPage() + 0;
+                                @endphp
                                 @foreach ($riview as $a)
                                     <tr>
+                                        <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td class="text-center text-uppercase">{{ $a->user->name }}</td>
                                         <td class="text-center text-uppercase">{{ $a->kamar->nama_kamar }}</td>
                                         <td class="text-center">{{ $a->rating }}</td>
@@ -102,6 +107,33 @@
                         </table>
                     </div>
                     <div class="card-footer">
+                        <nav>
+                            <ul class="pagination">
+                                @if ($riview->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Sebelumnya</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $riview->previousPageUrl() }}">Sebelumnya</a>
+                                    </li>
+                                @endif
+                                @for ($i = 1; $i <= $riview->lastPage(); $i++)
+                                    <li class="page-item {{ ($riview->currentPage() == $i) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $riview->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                @if ($riview->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $riview->nextPageUrl() }}">Selanjutnya</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Selanjutnya</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

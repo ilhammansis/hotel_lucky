@@ -53,6 +53,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
+                                    <th class="font-weight-bold">No</th>
                                     <th class="font-weight-bold">Kode Booking</th>
                                     <th class="font-weight-bold">Pengguna</th>
                                     <th class="font-weight-bold">Kamar</th>
@@ -66,8 +67,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no = ($booking->currentPage() - 1) * $booking->perPage() + 0;
+                                @endphp
                                 @foreach ($booking as $a )
                                     <tr class="text-center">
+                                        <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td>{{ $a->kode_booking }}</td>
                                         <td class="text-center text-uppercase">{{ $a->user->name }}</td>
                                         <td>{{ $a->kamar->nama_kamar }}</td>
@@ -92,6 +97,33 @@
                         </table>
                     </div>
                     <div class="card-footer">
+                        <nav>
+                            <ul class="pagination">
+                                @if ($booking->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Sebelumnya</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $booking->previousPageUrl() }}">Sebelumnya</a>
+                                    </li>
+                                @endif
+                                @for ($i = 1; $i <= $booking->lastPage(); $i++)
+                                    <li class="page-item {{ ($booking->currentPage() == $i) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $booking->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                @if ($booking->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $booking->nextPageUrl() }}">Selanjutnya</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Selanjutnya</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

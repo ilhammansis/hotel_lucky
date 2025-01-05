@@ -14,7 +14,7 @@ class KamarController extends Controller
      */
     public function index()
     {
-        $data['kamar']=Kamar::all();
+        $data['kamar']=Kamar::orderBy('nomor_kamar','asc')->paginate(5);
         $data['judul']='Data Kamar Hotel';
         return view('kamar.kamar_index', $data);
     }
@@ -128,7 +128,7 @@ class KamarController extends Controller
             }
             $foto_kamar = $request->file('foto_kamar');
             $foto_path = $foto_kamar->store('foto_kamars', 'public');
-            $kamar->foto_kamar = $foto_path; 
+            $kamar->foto_kamar = $foto_path;
         }
         $kamar->save();
 
