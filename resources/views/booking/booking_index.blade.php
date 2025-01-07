@@ -55,7 +55,7 @@
                                 <tr class=" text-center" style="color: white; background-color: #404040">
                                     <th class="font-weight-bold">No</th>
                                     <th class="font-weight-bold">Kode Booking</th>
-                                    <th class="font-weight-bold">Pengguna</th>
+                                    <th class="font-weight-bold">Tamu</th>
                                     <th class="font-weight-bold">Kamar</th>
                                     <th class="font-weight-bold">Check-In</th>
                                     <th class="font-weight-bold">Check-Out</th>
@@ -74,7 +74,7 @@
                                     <tr class="text-center">
                                         <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td>{{ $a->kode_booking }}</td>
-                                        <td class="text-center text-uppercase">{{ $a->user->name }}</td>
+                                        <td class="text-center text-uppercase">{{ $a->tamu->nama }}</td>
                                         <td>{{ $a->kamar->nama_kamar }}</td>
                                         <td>{{ date('d F Y', strtotime($a->tanggal_check_in)) }}</td>
                                         <td>{{ date('d F Y', strtotime($a->tanggal_check_out)) }}</td>

@@ -21,15 +21,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="my-select" class="font-weight-bold">Pengguna</label>
-                            <select id="my-select" class="form-control" name="user_id">
-                                <option value="">Pilih Pengguna</option>
-                                @foreach ($list_user as $id => $a)
-                                <option value="{{ $id }}" @selected($id==$booking->user_id)>{{ $a }}
+                            <label for="my-select" class="font-weight-bold">Tamu</label>
+                            <select id="my-select" class="form-control" name="tamu_id">
+                                <option value="">Pilih Tamu</option>
+                                @foreach ($list_tamu as $id => $a)
+                                <option value="{{ $id }}" @selected($id==$booking->tamu_id)>{{ $a }}
                                 </option>
                                 @endforeach
                             </select>
-                            <span class="text-danger">{{ $errors->first('user_id') }}</span>
+                            <span class="text-danger">{{ $errors->first('tamu_id') }}</span>
                         </div>
 
                         <div class="form-group">

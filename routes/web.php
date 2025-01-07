@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TamuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\RiviewController;
@@ -36,4 +37,5 @@ Route::resource('booking', BookingController::class);
 Route::resource('pembayaran', PembayaranController::class);
 Route::resource('user', UserController::class);
 Route::resource('transaksi', TransaksiController::class);
+Route::resource('tamu', TamuController::class);
 });

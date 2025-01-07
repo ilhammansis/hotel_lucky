@@ -1,10 +1,5 @@
 @extends('layouts.admins')
 <style>
-    .biaya-display{
-        display: inline-block;
-        text-align: right;
-        min-width: 100px;
-    }
     .komentar-td {
         max-width: 200px;
         white-space: nowrap;
@@ -67,7 +62,7 @@
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
                                     <th class="font-weight-bold">No</th>
-                                    <th class="font-weight-bold">Pengguna</th>
+                                    <th class="font-weight-bold">Tamu</th>
                                     <th class="font-weight-bold">Nama Kamar</th>
                                     <th class="font-weight-bold">Rating</th>
                                     <th class="font-weight-bold">Komentar</th>
@@ -82,7 +77,7 @@
                                 @foreach ($riview as $a)
                                     <tr>
                                         <td class="text-center">{{ $no + $loop->iteration }}</td>
-                                        <td class="text-center text-uppercase">{{ $a->user->name }}</td>
+                                        <td class="text-center text-uppercase">{{ $a->tamu->nama }}</td>
                                         <td class="text-center text-uppercase">{{ $a->kamar->nama_kamar }}</td>
                                         <td class="text-center">{{ $a->rating }}</td>
                                         <td class="komentar-td">

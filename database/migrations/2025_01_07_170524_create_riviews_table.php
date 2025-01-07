@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('riviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')
+            $table->foreignId('tamu_id')->constrained('tamus')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('kamar_id')->constrained('kamars')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->string('kode_booking',15)->unique();
-            $table->date('tanggal_check_in');
-            $table->date('tanggal_check_out');
-            $table->integer('jumlah_tamu')->default('1');
-            $table->decimal('total_harga',10,2);
-            $table->enum('status',['Konfirmasi','Pending','Selesai','Cancel']);
-            $table->enum('metode_pembayaran',['Cash','Transfer','QRIS']);
+            $table->enum('rating',['1','2','3','4','5']);
+            $table->text('komentar')->nullable();
+            $table->date('tanggal_riview');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('riviews');
     }
 };

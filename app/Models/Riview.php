@@ -11,16 +11,16 @@ class Riview extends Model
     public $timestamps = false;
     protected $dates = ['tanggal_riview'];
     protected $fillable =[
-        'user_id',
+        'tamu_id',
         'kamar_id',
         'rating',
         'komentar',
         'tanggal_riview'
     ];
 
-    public function user()
+    public function tamu()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(Tamu::class)->withDefault();
     }
 
     public function kamar()

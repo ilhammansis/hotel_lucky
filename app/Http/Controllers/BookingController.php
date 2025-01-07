@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Kamar;
 use App\Models\Booking;
+use App\Models\Tamu;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -24,8 +25,8 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $data['list_user'] = User::selectRaw("id,concat(role,'-',name) as tampil")
-            ->pluck('tampil','id');
+        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
+        ->pluck('tampil','id');
         $data['list_kamar'] = Kamar::selectRaw("id,concat(nomor_kamar,'-',nama_kamar) as tampil")
             ->pluck('tampil','id');
         $data['list_status']=[
@@ -44,7 +45,7 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id'=>'required|exists:users,id',
+            'tamu_id'=>'required|exists:tamus,id',
             'kamar_id'=>'required|exists:kamars,id',
             'kode_booking'=>'required|unique:bookings,kode_booking',
             'tanggal_check_in'=>'required',
@@ -55,7 +56,7 @@ class BookingController extends Controller
             'metode_pembayaran'=>'required'
         ]);
         $booking = new Booking();
-        $booking->user_id = $request->user_id;
+        $booking->tamu_id = $request->tamu_id;
         $booking->kamar_id = $request->kamar_id;
         $booking->kode_booking = $request->kode_booking;
         $booking->tanggal_check_in = $request->tanggal_check_in;
@@ -83,7 +84,7 @@ class BookingController extends Controller
     public function edit(string $id)
     {
         $data['booking']=Booking::findOrFail($id);
-        $data['list_user'] = User::selectRaw("id,concat(role,'-',name) as tampil")
+        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_kamar'] = Kamar::selectRaw("id,concat(nomor_kamar,'-',nama_kamar) as tampil")
             ->pluck('tampil','id');
@@ -102,7 +103,7 @@ class BookingController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'user_id'=>'required|exists:users,id',
+            'tamu_id'=>'required|exists:tamus,id',
             'kamar_id'=>'required|exists:kamars,id',
             'kode_booking'=>'required|unique:bookings,kode_booking,' .$id,
             'tanggal_check_in'=>'required',
@@ -113,7 +114,7 @@ class BookingController extends Controller
             'metode_pembayaran'=>'required'
         ]);
         $booking = Booking::findOrFail($id);
-        $booking->user_id = $request->user_id;
+        $booking->tamu_id = $request->tamu_id;
         $booking->kamar_id = $request->kamar_id;
         $booking->kode_booking = $request->kode_booking;
         $booking->tanggal_check_in = $request->tanggal_check_in;

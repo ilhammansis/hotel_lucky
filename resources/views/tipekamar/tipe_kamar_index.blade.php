@@ -70,7 +70,7 @@
                                         <td class="text-center text-uppercase">{{ $a->tipekamar }}</td>
                                         <td>{{ 'Rp. ' . number_format($a->harga_dasar, 0, ',', '.') }}</td>
                                         <td class="text-center">{{ $a->kapasitas }}<span> Orang</span></td>
-                                        <td class="text-center">
+                                        <td style="max-width: 200px">
                                             @if ($a->deskripsi)
                                                 {{ basename($a->deskripsi) }}
                                             @else

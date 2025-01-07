@@ -52,7 +52,7 @@
                             <thead>
                                 <tr class=" text-center" style="color: white; background-color: #404040">
                                     <th class="font-weight-bold">No</th>
-                                    <th class="font-weight-bold">Pengguna</th>
+                                    <th class="font-weight-bold">Tamu</th>
                                     <th class="font-weight-bold">Kode Booking</th>
                                     <th class="font-weight-bold">Kode Pembayaran</th>
                                     <th class="font-weight-bold">Kamar</th>
@@ -71,7 +71,7 @@
                                 @foreach ($transaksi as $a )
                                     <tr>
                                         <td class="text-center">{{ $no + $loop->iteration }}</td>
-                                        <td class="text-center text-uppercase">{{ $a->user->name }}</td>
+                                        <td class="text-center text-uppercase">{{ $a->tamu->nama }}</td>
                                         <td class="text-center text-uppercase">{{ $a->booking->kode_booking }}</td>
                                         <td class="text-center text-uppercase">{{ $a->pembayaran->kode_pembayaran }}</td>
                                         <td class="text-center text-uppercase">{{ $a->kamar->nama_kamar }}</td>

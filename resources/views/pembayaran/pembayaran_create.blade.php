@@ -15,7 +15,7 @@
 
                         <div class="form-group">
                             <label for="kode_pembayaran" class="font-weight-bold">Kode Pembayaran</label>
-                            <input id="kode_pembayaran" class="form-control" type="text" name="kode_pembayaran" placeholder="Awali dengan kode *PMB"
+                            <input id="kode_pembayaran" class="form-control" type="text" name="kode_pembayaran" placeholder="Awali dengan kode *PMBYR"
                                 value="{{ old('kode_pembayaran') }}">
                             <span class="text-danger">{{ $errors->first('kode_pembayaran') }}</span>
                         </div>

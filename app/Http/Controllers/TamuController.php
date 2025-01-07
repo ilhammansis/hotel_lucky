@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tamu;
 use Illuminate\Http\Request;
 
 class TamuController extends Controller
@@ -11,7 +12,9 @@ class TamuController extends Controller
      */
     public function index()
     {
-        //
+        $data['tamu']=Tamu::orderBy('nama','asc')->paginate(5);
+        $data['judul']='Data Tamu Hotel';
+        return view('tamu.tamu_index', $data);
     }
 
     /**
@@ -19,7 +22,7 @@ class TamuController extends Controller
      */
     public function create()
     {
-        //
+        return view('tamu.tamu_create');
     }
 
     /**
@@ -27,7 +30,23 @@ class TamuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'email'=>'required|email|unique:tamus,email',
+            'no_hp'=>'required',
+            'alamat'=>'required',
+            'catatan'=>'nullable'
+        ]);
+
+        $tamu = new Tamu();
+        $tamu->nama = $request->nama;
+        $tamu->email = $request->email;
+        $tamu->no_hp = $request->no_hp;
+        $tamu->alamat = $request->alamat;
+        $tamu->catatan = $request->catatan;
+        $tamu->save();
+
+        return redirect('/tamu')->with('Pesan','Data Sudah Disimpan');
     }
 
     /**
@@ -43,7 +62,8 @@ class TamuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['tamu'] = Tamu::find($id);
+        return view('tamu.tamu_edit', $data);
     }
 
     /**
@@ -51,7 +71,23 @@ class TamuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'email'=>'required|email|unique:tamus,email,'.$id,
+            'no_hp'=>'required',
+            'alamat'=>'required',
+            'catatan'=>'nullable'
+        ]);
+
+        $tamu = Tamu::find($id);
+        $tamu->nama = $request->nama;
+        $tamu->email = $request->email;
+        $tamu->no_hp = $request->no_hp;
+        $tamu->alamat = $request->alamat;
+        $tamu->catatan = $request->catatan;
+        $tamu->save();
+
+        return redirect('/tamu')->with('Pesan','Data Sudah Diupdate');
     }
 
     /**
@@ -59,6 +95,8 @@ class TamuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tamu = Tamu::find($id);
+        $tamu->delete();
+        return back()->with('Pesan','Data Sudah Dihapus');
     }
 }

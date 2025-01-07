@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\TipeKamar;
 use App\Models\Transaksi;
 use App\Models\Pembayaran;
+use App\Models\Tamu;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -39,7 +40,7 @@ class TransaksiController extends Controller
             ->pluck('tampil','id');
         $data['list_tipekamar'] = TipeKamar::selectRaw("id,tipekamar as tampil")
             ->pluck('tampil','id');
-        $data['list_user'] = User::selectRaw("id,name as tampil")
+        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_pembayaran'] = Pembayaran::selectRaw("id,kode_pembayaran as tampil")
             ->pluck('tampil','id');
@@ -52,7 +53,7 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id'=>'required|exists:users,id',
+            'tamu_id'=>'required|exists:tamus,id',
             'booking_id'=>'required|exists:bookings,id',
             'pembayaran_id'=>'required|exists:pembayarans,id',
             'kamar_id'=>'required|exists:kamars,id',
@@ -64,7 +65,7 @@ class TransaksiController extends Controller
         ]);
 
         $pembayaran = new Transaksi();
-        $pembayaran->user_id = $request->user_id;
+        $pembayaran->tamu_id = $request->tamu_id;
         $pembayaran->booking_id = $request->booking_id;
         $pembayaran->pembayaran_id = $request->pembayaran_id;
         $pembayaran->kamar_id = $request->kamar_id;
@@ -104,7 +105,7 @@ class TransaksiController extends Controller
             ->pluck('tampil','id');
         $data['list_tipekamar'] = TipeKamar::selectRaw("id,tipekamar as tampil")
             ->pluck('tampil','id');
-        $data['list_user'] = User::selectRaw("id,name as tampil")
+        $data['list_tamu'] = User::selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_pembayaran'] = Pembayaran::selectRaw("id,kode_pembayaran as tampil")
             ->pluck('tampil','id');
@@ -117,7 +118,7 @@ class TransaksiController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'user_id'=>'required|exists:users,id',
+            'tamu_id'=>'required|exists:tamus,id',
             'booking_id'=>'required|exists:bookings,id',
             'pembayaran_id'=>'required|exists:pembayarans,id',
             'kamar_id'=>'required|exists:kamars,id',
@@ -129,7 +130,7 @@ class TransaksiController extends Controller
         ]);
 
         $pembayaran = Transaksi::findOrFail($id);
-        $pembayaran->user_id = $request->user_id;
+        $pembayaran->tamu_id = $request->tamu_id;
         $pembayaran->booking_id = $request->booking_id;
         $pembayaran->pembayaran_id = $request->pembayaran_id;
         $pembayaran->kamar_id = $request->kamar_id;

@@ -77,7 +77,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#transaksi" aria-expanded="false" aria-controls="transaksi">
-                    <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
+                    <i class="mdi mdi-cash-100 menu-icon"></i>
                     <span class="menu-title">Transaksi</span>
                     <i class="menu-arrow"></i>
                 </a>
@@ -120,8 +120,23 @@
             </li>
 
             <li class="nav-item sidebar-category">
-                <p style="font-size:1rem">Data Ulasan Tamu</p>
+                <p style="font-size:1rem">Data Tamu</p>
                 <span></span>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#tamu" aria-expanded="false" aria-controls="tamu">
+                    <i class="mdi mdi-account-multiple menu-icon"></i>
+                    <i class="bi bi-house-gear-fill"></i>
+                    <span class="menu-title">Tamu</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="tamu">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('tamu',[]) }}">Data Tamu</a></li>
+                        <li class="nav-item"> <a style="color:white" class="nav-link" href="{{ url('tamu/create',[]) }}">Tambah Tamu</a></li>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item">

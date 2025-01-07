@@ -11,7 +11,7 @@ class Booking extends Model
     protected $dates = ['tanggal_check_in','tanggal_check_out'];
     public $timestamps = false;
     protected $fillable =[
-        'user_id',
+        'tamu_id',
         'kamar_id',
         'kode_booking',
         'tanggal_check_in',
@@ -22,9 +22,9 @@ class Booking extends Model
         'metode_pembayaran'
     ];
 
-    public function user()
+    public function tamu()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(Tamu::class)->withDefault();
     }
 
     public function kamar()

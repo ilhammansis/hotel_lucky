@@ -11,7 +11,7 @@ class Transaksi extends Model
     protected $dates = ['tanggal_transaksi'];
     public $timestamps = false;
     public $fillable = [
-        'user_id',
+        'tamu_id',
         'booking_id',
         'pembayaran_id',
         'kamar_id',
@@ -26,9 +26,9 @@ class Transaksi extends Model
         return $this->belongsTo(Booking::class)->withDefault();
     }
 
-    public function user()
+    public function tamu()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(Tamu::class)->withDefault();
     }
 
     public function pembayaran()

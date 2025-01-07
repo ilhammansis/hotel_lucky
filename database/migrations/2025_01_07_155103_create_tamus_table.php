@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tamus', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('no_hp',15);
+            $table->text('alamat');
+            $table->text('catatan')->nullable();
             $table->timestamps();
         });
     }

@@ -45,18 +45,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function riview()
-    {
-        return $this->hasMany(Riview::class);
-    }
-
-    public function booking()
-    {
-        return $this->hasMany(Booking::class);
-    }
-
-    public function transaksi()
-    {
-        return $this->hasMany(Transaksi::class);
-    }
 }
