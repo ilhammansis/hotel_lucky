@@ -18,103 +18,92 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        @if (!isset($hideNavbar) || !$hideNavbar)
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Kamar</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('kamar', []) }}">Data Kamar</a></li>
-                                <li><a class="dropdown-item" href="{{ url('kamar/create', []) }}">Tambah kamar</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url('tipekamar',[]) }}">Data Tipe Kamar</a></li>
-                                <li><a class="dropdown-item" href="{{ url('tipekamar/create', []) }}">Tambah Tipe Kamar</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Riview</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('riview', []) }}">Data Riview</a></li>
-                                <li><a class="dropdown-item" href="{{ url('riview/create', []) }}">Tambah Riviewr</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Booking</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('booking', []) }}">Data Booking</a></li>
-                                <li><a class="dropdown-item" href="{{ url('booking/create', []) }}">Tambah Data Booking</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pembayaran</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('pembayaran', []) }}">Data Pembayaran</a></li>
-                                <li><a class="dropdown-item" href="{{ url('pembayaran/create', []) }}">Tambah Data Pembayaran</a></li>
-                            </ul>
-                        </li>
-
-                        {{-- <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Laporan
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('dokter/laporan/cetak', []) }}">Laporan Dokter</a></li>
-                            <li><a class="dropdown-item" href="{{ url('pasien/laporan/cetak', []) }}">Laporan Pasien</a></li>
-                            </ul>
-                        </div> --}}
-                    @endauth
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav me-auto">
+                            @auth
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                                <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Kamar</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('kamar', []) }}">Data Kamar</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('kamar/create', []) }}">Tambah kamar</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ url('tipekamar',[]) }}">Data Tipe Kamar</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('tipekamar/create', []) }}">Tambah Tipe Kamar</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Riview</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('riview', []) }}">Data Riview</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('riview/create', []) }}">Tambah Riviewr</a></li>
+                                </ul>
+                            </li>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Booking</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('booking', []) }}">Data Booking</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('booking/create', []) }}">Tambah Data Booking</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pembayaran</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('pembayaran', []) }}">Data Pembayaran</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('pembayaran/create', []) }}">Tambah Data Pembayaran</a></li>
+                                </ul>
+                            </li>
+                            @endauth
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                @endif
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        @endif
 
         <main class="py-4">
             @if (Session::has('Pesan'))
@@ -125,5 +114,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
