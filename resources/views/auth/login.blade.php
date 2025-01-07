@@ -1,6 +1,4 @@
 @extends('layouts.app')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 @section('content')
 <section class="vh-100" style="background-color: #BFBFBF; height:100vh">
     <div class="container py-5 h-100">
