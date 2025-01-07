@@ -25,7 +25,7 @@
                             <select id="my-select" class="form-control" name="booking_id">
                                 <option value="">Kode Booking</option>
                                 @foreach ($list_booking as $id => $a)
-                                <option value="{{ $id }}" @selected($id==old(''))>{{ $a }}
+                                <option value="{{ $id }}" @selected($id==old('booking_id'))>{{ $a }}
                                 </option>
                                 @endforeach
                             </select>

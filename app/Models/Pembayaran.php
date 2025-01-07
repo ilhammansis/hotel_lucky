@@ -23,4 +23,8 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Booking::class)->withDefault();
     }
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }

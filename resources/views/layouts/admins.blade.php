@@ -74,6 +74,22 @@
                 <p style="font-size:1rem">Data Transaksi</p>
                 <span></span>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#transaksi" aria-expanded="false" aria-controls="transaksi">
+                    <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
+                    <span class="menu-title">Transaksi</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="transaksi">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('transaksi',[]) }}">Data Transaksi</a></li>
+                        <li class="nav-item"> <a style="color:white" class="nav-link" href="{{ url('transaksi/create',[]) }}">Tambah Data Transaksi</a></li>
+                    </ul>
+                </div>
+            </li>
+
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#booking" aria-expanded="false" aria-controls="booking">
                     <i class="mdi mdi-calendar-multiple-check menu-icon"></i>

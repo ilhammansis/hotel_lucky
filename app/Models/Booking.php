@@ -36,4 +36,9 @@ class Booking extends Model
     {
         return $this->hasMany(Pembayaran::class);
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }

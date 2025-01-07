@@ -1,4 +1,4 @@
-{{-- @extends('layouts.admins')
+@extends('layouts.admins')
 @section('content-admin')
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -64,4 +64,4 @@
     </div>
 </div>
 </div>
-@endsection --}}
+@endsection

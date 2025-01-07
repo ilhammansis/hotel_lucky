@@ -23,4 +23,9 @@ class Kamar extends Model
     {
         return $this->belongsTo(TipeKamar::class, 'tipekamar_id')->withDefault();
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }   
 }

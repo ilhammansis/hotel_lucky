@@ -25,7 +25,7 @@
                             <select id="my-select" class="form-control" name="user_id">
                                 <option value="">Pilih Pengguna</option>
                                 @foreach ($list_user as $id => $a)
-                                <option value="{{ $id }}" @selected($id==old(''))>{{ $a }}
+                                <option value="{{ $id }}" @selected($id==old('user_id'))>{{ $a }}
                                 </option>
                                 @endforeach
                             </select>
@@ -37,7 +37,7 @@
                             <select id="my-select" class="form-control" name="kamar_id">
                                 <option value="">Pilih Kamar</option>
                                 @foreach ($list_kamar as $id => $a)
-                                <option value="{{ $id }}" @selected($id==old(''))>{{ $a }}
+                                <option value="{{ $id }}" @selected($id==old('kamar_id'))>{{ $a }}
                                 </option>
                                 @endforeach
                             </select>
