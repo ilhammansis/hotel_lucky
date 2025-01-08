@@ -16,7 +16,7 @@ class Tamu extends Model
 
     public function booking()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class, 'tamu_id');
     }
 
     public function transaksi()

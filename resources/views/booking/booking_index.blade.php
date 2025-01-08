@@ -79,7 +79,7 @@
                                         <td>{{ date('d F Y', strtotime($a->tanggal_check_in)) }}</td>
                                         <td>{{ date('d F Y', strtotime($a->tanggal_check_out)) }}</td>
                                         <td>{{ $a->jumlah_tamu }} <span> Orang</span> </td>
-                                        <td>{{ 'Rp. ' . number_format($a->total_harga, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp. ' . number_format($a->kamar->harga_permalam, 0, ',', '.') }}</td>
                                         <td>{{ $a->status }}</td>
                                         <td>{{ $a->metode_pembayaran }}</td>
 

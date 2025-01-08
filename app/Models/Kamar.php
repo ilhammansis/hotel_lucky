@@ -27,5 +27,10 @@ class Kamar extends Model
     public function transaksi()
     {
         return $this->hasMany(Transaksi::class);
-    }   
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class, 'kamar_id');
+    }
 }

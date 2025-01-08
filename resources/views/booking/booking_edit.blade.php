@@ -66,9 +66,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="total_harga" class="font-weight-bold">Total</label>
-                            <input id="total_harga" class="form-control" type="number" name="total_harga"
-                                value="{{ $booking->total_harga ??old('total_harga') }}">
+                            <label for="my-select" class="font-weight-bold">Total</label>
+                            <select id="my-select" class="form-control" name="total_harga">
+                                <option value="">Pilih Total</option>
+                                @foreach ($list_harga as $id => $a)
+                                <option value="{{ $id }}" @selected($id==$booking->total_harga)>{{ $a }}
+                                </option>
+                                @endforeach
+                            </select>
                             <span class="text-danger">{{ $errors->first('total_harga') }}</span>
                         </div>
 

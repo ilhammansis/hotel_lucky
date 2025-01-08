@@ -44,7 +44,8 @@ class TipeKamarController extends Controller
         $request->validate([
             'tipekamar'=>'required',
             'harga_dasar'=>'required',
-            'kapasitas'=>'required'
+            'kapasitas'=>'required',
+            'stok_kamar'=>'required'
         ],
         [
             'tipekamar.required'=>'*Tipe Kamar Belum Anda Pilih!',
@@ -54,6 +55,7 @@ class TipeKamarController extends Controller
     );
         $tipe_kamar = new TipeKamar();
         $tipe_kamar->tipekamar = $request->tipekamar;
+        $tipe_kamar->stok_kamar = $request->stok_kamar;
         $tipe_kamar->deskripsi = $request->deskripsi;
         $tipe_kamar->harga_dasar = $request->harga_dasar;
         $tipe_kamar->kapasitas = $request->kapasitas;
@@ -98,11 +100,13 @@ class TipeKamarController extends Controller
         $request->validate([
             'tipekamar'=>'required',
             'harga_dasar'=>'required',
-            'kapasitas'=>'required'
+            'kapasitas'=>'required',
+            'stok_kamar'=>'required'
         ]);
 
         $tipe_kamar = TipeKamar::findOrFail($id);
         $tipe_kamar->tipekamar = $request->tipekamar;
+        $tipe_kamar->stok_kamar = $request->stok_kamar;
         $tipe_kamar->deskripsi = $request->deskripsi;
         $tipe_kamar->harga_dasar = $request->harga_dasar;
         $tipe_kamar->kapasitas = $request->kapasitas;

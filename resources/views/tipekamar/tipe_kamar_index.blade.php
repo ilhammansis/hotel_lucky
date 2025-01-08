@@ -54,6 +54,7 @@
                                 <tr class=" text-center" style="color: white; background-color: #404040">
                                     <th class="font-weight-bold">No</th>
                                     <th class=" font-weight-bold">Tipe Kamar</th>
+                                    <th class=" font-weight-bold">Stok Kamar</th>
                                     <th class=" font-weight-bold">Harga Awal</th>
                                     <th class=" font-weight-bold">Kapasitas</th>
                                     <th class=" font-weight-bold">Deskripsi</th>
@@ -68,6 +69,7 @@
                                     <tr>
                                         <td class="text-center">{{ $no + $loop->iteration }}</td>
                                         <td class="text-center text-uppercase">{{ $a->tipekamar }}</td>
+                                        <td class="text-center text-uppercase">{{ $a->stok_kamar }}</td>
                                         <td>{{ 'Rp. ' . number_format($a->harga_dasar, 0, ',', '.') }}</td>
                                         <td class="text-center">{{ $a->kapasitas }}<span> Orang</span></td>
                                         <td style="max-width: 200px">

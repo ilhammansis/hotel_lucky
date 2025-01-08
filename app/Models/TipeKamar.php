@@ -17,7 +17,7 @@ class TipeKamar extends Model
 
     public function kamar()
     {
-        return $this->hasMany(Kamar::class);
+        return $this->hasMany(Kamar::class, 'tipekamar_id');
     }
 
     public function transaksi()

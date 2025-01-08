@@ -36,11 +36,20 @@ class TransaksiController extends Controller
         ];
         $data['list_booking'] = Booking::selectRaw("id,kode_booking as tampil")
             ->pluck('tampil','id');
-        $data['list_kamar'] = Kamar::selectRaw("id,nama_kamar as tampil")
+        $data['list_kamar'] = Kamar::whereHas('booking', function($query){
+                $query->where('status','Konfirmasi');
+            })
+            ->selectRaw("id,nama_kamar as tampil")
             ->pluck('tampil','id');
-        $data['list_tipekamar'] = TipeKamar::selectRaw("id,tipekamar as tampil")
+        $data['list_tipekamar'] = TipeKamar::whereHas('kamar', function($query){
+                $query->whereHas('booking', function($query){
+                    $query->where('status','Konfirmasi');
+                });
+            })
+            ->selectRaw("id,tipekamar as tampil")
             ->pluck('tampil','id');
-        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
+        $data['list_tamu'] = Tamu::whereHas('booking')
+            ->selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_pembayaran'] = Pembayaran::selectRaw("id,kode_pembayaran as tampil")
             ->pluck('tampil','id');
@@ -101,11 +110,20 @@ class TransaksiController extends Controller
         ];
         $data['list_booking'] = Booking::selectRaw("id,kode_booking as tampil")
             ->pluck('tampil','id');
-        $data['list_kamar'] = Kamar::selectRaw("id,nama_kamar as tampil")
+        $data['list_kamar'] = Kamar::whereHas('booking', function($query){
+                $query->where('status','Konfirmasi');
+            })
+            ->selectRaw("id,nama_kamar as tampil")
             ->pluck('tampil','id');
-        $data['list_tipekamar'] = TipeKamar::selectRaw("id,tipekamar as tampil")
+            $data['list_tipekamar'] = TipeKamar::whereHas('kamar', function($query){
+                $query->whereHas('booking', function($query){
+                    $query->where('status','Konfirmasi');
+                });
+            })
+            ->selectRaw("id,tipekamar as tampil")
             ->pluck('tampil','id');
-        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
+        $data['list_tamu'] = Tamu::whereHas('booking')
+            ->selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_pembayaran'] = Pembayaran::selectRaw("id,kode_pembayaran as tampil")
             ->pluck('tampil','id');
@@ -163,7 +181,7 @@ class TransaksiController extends Controller
 
     public function home()
 {
-    
+
     $data['total_transaksi'] = Transaksi::count();
     $data['transaksi_berhasil'] = Transaksi::where('status_transaksi', 'Berhasil')->count();
     $data['transaksi_pending'] = Transaksi::where('status_transaksi', 'Pending')->count();

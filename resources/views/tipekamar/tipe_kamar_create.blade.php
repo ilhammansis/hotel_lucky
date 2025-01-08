@@ -26,6 +26,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="stok_kamar" class="font-weight-bold">Stok Kamar</label>
+                            <input id="stok_kamar" class="form-control" type="number" name="stok_kamar"
+                                value="{{ old('stok_kamar') }}">
+                            <span class="text-danger">{{ $errors->first('stok_kamar') }}</span>
+                        </div>
+
+                        <div class="form-group">
                             <label for="harga_dasar" class="font-weight-bold">Harga Awal</label>
                             <input id="harga_dasar" class="form-control" type="number" name="harga_dasar"
                                 value="{{ old('harga_dasar') }}">
