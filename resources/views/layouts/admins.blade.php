@@ -84,7 +84,8 @@
                 <div class="collapse" id="transaksi">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('transaksi',[]) }}">Data Transaksi</a></li>
-                        <li class="nav-item"> <a style="color:white" class="nav-link" href="{{ url('transaksi/create',[]) }}">Tambah Data Transaksi</a></li>
+                        <li class="nav-item"> <a  class="nav-link" href="{{ url('transaksi/create',[]) }}">Tambah Transaksi</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('transaksi/laporan/cetak',[]) }}">Laporan Transaksi</a></li>
                     </ul>
                 </div>
             </li>
@@ -292,24 +293,22 @@
             </button>
             </div>
             <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
-            <ul class="navbar-nav mr-lg-2">
-                <li class="nav-item nav-search d-none d-lg-block">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
-                </div>
-                </li>
-            </ul>
+                <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item d-none d-lg-block">
+                        <a href="#" class="navbar-brand font-weight-bold" style="color: black">
+                            <img src="{{ asset('img/favicon.jpg') }}" alt="Logo Lucky Hotel" style="height:60px; width:60px; border-radius: 50px">
+                            Lucky Hotel
+                        </a>
+                    </li>
+                </ul>
+
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                     <img style="width: 30px;border-radius:60px" src="{{ asset('img/man.png') }}" alt="profile"/>
-                    <span class="nav-profile-name">{{ Auth::user()->name }}</span>
+                    <span class="nav-profile-name">{{ Auth::user()->username }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item">
-                    <i class="mdi mdi-settings text-primary"></i>
-                    Settings
-                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="mdi mdi-logout text-primary"></i>
@@ -358,15 +357,15 @@
             <!-- content-wrapper ends -->
             <!-- partial:./partials/_footer.html -->
             <footer class="footer">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Distributed By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a></span>
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Lucky hotel<sup>TM</sup></span>
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Lucky Hotel</span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
                 </div>
                 </div>
-            </div>
+            </div> --}}
             </footer>
             <!-- partial -->
         </div>
@@ -391,6 +390,7 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="{{ asset('spica') }}/js/dashboard.js"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- End custom js for this page-->
     <script>
         function updateTime() {
@@ -406,6 +406,7 @@
 
         setInterval(updateTime, 1000);
         updateTime();
+
     </script>
     </body>
 

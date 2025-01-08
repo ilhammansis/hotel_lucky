@@ -16,6 +16,7 @@ class KamarController extends Controller
     {
         $data['kamar']=Kamar::orderBy('nomor_kamar','asc')->paginate(5);
         $data['judul']='Data Kamar Hotel';
+
         return view('kamar.kamar_index', $data);
     }
 
@@ -144,4 +145,6 @@ class KamarController extends Controller
         $kamar->delete();
         return back()->with('Pesan','Data Sudah Dihapus');
     }
+
+
 }

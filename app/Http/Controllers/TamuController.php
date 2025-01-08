@@ -99,4 +99,5 @@ class TamuController extends Controller
         $tamu->delete();
         return back()->with('Pesan','Data Sudah Dihapus');
     }
+    
 }

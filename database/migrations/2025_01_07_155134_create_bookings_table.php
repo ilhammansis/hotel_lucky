@@ -35,4 +35,38 @@ return new class extends Migration
     {
         Schema::dropIfExists('bookings');
     }
+    class BookingController extends Controller
+{
+    public function create()
+    {
+        $kamars = Kamar::where('status', 'Tersedia')->get(); // Mengambil kamar yang tersedia
+        return view('booking.create', compact('kamars'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'tanggal_check_in' => 'required|date',
+            'tanggal_check_out' => 'required|date',
+            'kamar_id' => 'required|exists:kamars,id',
+            'jumlah_tamu' => 'required|integer|min:1',
+        ]);
+
+        $kamar = Kamar::findOrFail($request->kamar_id);
+        $total_harga = $kamar->harga_permalam * (strtotime($request->tanggal_check_out) - strtotime($request->tanggal_check_in)) / 86400;
+
+        Booking::create([
+            'tamu_id' => auth()->user()->tamu_id, // Sesuaikan dengan user yang login
+            'kamar_id' => $request->kamar_id,
+            'kode_booking' => strtoupper(str_random(10)),
+            'tanggal_check_in' => $request->tanggal_check_in,
+            'tanggal_check_out' => $request->tanggal_check_out,
+            'jumlah_tamu' => $request->jumlah_tamu,
+            'total_harga' => $total_harga,
+            'status' => 'Pending',
+            'metode_pembayaran' => 'Cash', // Bisa ditambahkan opsi pembayaran lain
+        ]);
+
+        return redirect()->route('booking.success');
+    }
 };

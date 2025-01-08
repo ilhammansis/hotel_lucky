@@ -105,7 +105,7 @@ class TransaksiController extends Controller
             ->pluck('tampil','id');
         $data['list_tipekamar'] = TipeKamar::selectRaw("id,tipekamar as tampil")
             ->pluck('tampil','id');
-        $data['list_tamu'] = User::selectRaw("id,nama as tampil")
+        $data['list_tamu'] = Tamu::selectRaw("id,nama as tampil")
             ->pluck('tampil','id');
         $data['list_pembayaran'] = Pembayaran::selectRaw("id,kode_pembayaran as tampil")
             ->pluck('tampil','id');
@@ -152,4 +152,26 @@ class TransaksiController extends Controller
         $pembayaran->delete();
         return back()->with('Pesan','Data Sudah Dihapus');
     }
+
+    public function laporan()
+    {
+        $transaksi = Transaksi::where('status_transaksi', 'Berhasil')->get();
+        $judul = "Laporan Transaksi";
+
+        return view('transaksi.transaksi_laporan', compact('transaksi', 'judul'));
+    }
+
+    public function home()
+{
+    
+    $data['total_transaksi'] = Transaksi::count();
+    $data['transaksi_berhasil'] = Transaksi::where('status_transaksi', 'Berhasil')->count();
+    $data['transaksi_pending'] = Transaksi::where('status_transaksi', 'Pending')->count();
+    $data['transaksi_gagal'] = Transaksi::where('status_transaksi', 'Gagal')->count();
+    $data['pendapatan_total'] = Transaksi::where('status_transaksi', 'Berhasil')->sum('total_harga');
+
+    return view('dashboard', $data);
+}
+
+
 }

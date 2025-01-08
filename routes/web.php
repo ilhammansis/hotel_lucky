@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kamar;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TamuController;
@@ -23,8 +24,10 @@ use App\Http\Controllers\PembayaranController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $kamars = Kamar::where('status', 'Tersedia')->get();
+    return view('welcome', compact('kamars'));
 });
+
 
 Auth::routes();
 
@@ -38,4 +41,7 @@ Route::resource('pembayaran', PembayaranController::class);
 Route::resource('user', UserController::class);
 Route::resource('transaksi', TransaksiController::class);
 Route::resource('tamu', TamuController::class);
+Route::get('transaksi/laporan/cetak',[TransaksiController::class,'laporan']);
+Route::get('/home', [TransaksiController::class, 'home'])->name('dashboard');
+
 });
